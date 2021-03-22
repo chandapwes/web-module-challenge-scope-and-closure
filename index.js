@@ -14,10 +14,15 @@
 */
 
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]) //this line will see foofoo
 }
-console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
 
+// console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
+
+function addStrings(str){
+  return str+str;
+}
+console.log(processFirstItem(['foo', 'bar'], addStrings));
 // ⭐️ Example Challenge END ⭐️
 
 
@@ -62,10 +67,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.floor(Math.random() * Math.floor(3));
 }
-
+console.log(inning());
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -81,18 +86,31 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
-}
+function finalScore(inningCb, inningsNum){
+  let homeScore = 0;
+  let awayScore = 0;
+  for (let i = 0; i < inningsNum; i++){
+    homeScore = homeScore + inningCb();
+    awayScore = awayScore + inningCb();
+  }
+  return {
+    Home: homeScore,
+    Away: awayScore
+  }
+};
+
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-}
+function getInningScore(inningCb) {
+  return {
+    Home: inning(),
+    Away: inning()
+  };
+};
 
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
@@ -136,8 +154,22 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScoreCb, inningCb, inningsNumCb) {
+  let scores = [];
+  let home = 0;
+  let away = 0;
+  for(let i = 0; i < inningsNumCb; i++){
+    let inningScores = getInningScoreCb(inningCb);
+    home+= inningScores.home;
+    away += inningScores.away;
+    scores.push(`Innings ${i+1}: Away ${inningScoresCb.away} - Home ${inningScoresCb.home}`)
+  }
+  if(home === away){
+    scores.push(`This game will require extra innings: Away ${inningScoresCb.away} - Home ${inningScoresCb.home}`)
+  }else{
+    scores.push(`Final Score: Away ${inningScoresCb.away} - Home ${inningScoresCb.home}`)
+  }
+  return scores;
 }
 
 

@@ -43,6 +43,7 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+Answer: A closure is the combination of a function and the lexical environment where it was declared. Its used ot create data privacy in relation to variables only being in scope to certain functions. 
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -64,8 +65,11 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+Answer: closure is used on line 51. There is a variable newRoll within the function.
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+Answer: It always invokes the function 'personalDice' which invokes the function 'function()' which has access to the variable 'newRoll'. The resulting number for the roll could change every time. 
 c. What is the lexical scope of `newRoll`? 
+Answer: It is inside the function.
 
 
 ### Task 3 - Stretch Goals
